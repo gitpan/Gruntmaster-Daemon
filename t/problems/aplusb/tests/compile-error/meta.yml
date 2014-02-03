@@ -1,0 +1,9 @@
+test_name: Compile Error
+test_description: A program which does not compile
+problem: aplusb
+expected_result: -1
+expected_result_text: Compile error
+files:
+  prog:
+    format: CPP
+    name: prog.cpp

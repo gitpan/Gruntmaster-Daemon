@@ -1,0 +1,17 @@
+---
+name: A-B
+generator: Run
+judge: Points
+runner: Verifier
+testcnt: 10
+timeout: 1
+mlimit: 20971520
+olimit: 100
+description: The X^2 problem
+files:
+  ver:
+    format: CPP
+    name: ver.cpp
+  gen:
+    format: CPP
+    name: gen.cpp

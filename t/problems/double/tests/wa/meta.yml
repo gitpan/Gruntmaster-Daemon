@@ -1,0 +1,22 @@
+test_name: Wrong answer
+test_description: A program which fails on test 4
+problem: double
+expected_result: 1
+expected_result_text: Wrong answer
+expected_results:
+- id: 1
+  result: 0
+  result_text: 0
+- id: 2
+  result: 0
+  result_text: 0
+- id: 3
+  result: 0
+  result_text: 0
+- id: 4
+  result: 1
+  result_text: Wrong answer
+files:
+  prog:
+    format: CPP
+    name: prog.cpp

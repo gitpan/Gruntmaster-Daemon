@@ -1,0 +1,37 @@
+#!/usr/bin/perl -w
+use v5.14;
+use Gruntmaster::Daemon;
+
+Gruntmaster::Daemon->run;
+
+__END__
+
+=head1 NAME
+
+gruntmasterd - Gruntmaster 6000 Online Judge -- daemon
+
+=head1 SYNOPSIS
+
+  gruntmasterd
+
+=head1 DESCRIPTION
+
+Gruntmaster::Daemon is the daemon component of the Gruntmaster 6000 online judge.
+
+gruntmasterd is a shortcut for calling C<< Gruntmaster::Daemon->run >>. It takes no arguments.
+
+=head1 AUTHOR
+
+Marius Gavrilescu E<lt>marius@ieval.roE<gt>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2014 by Marius Gavrilescu
+
+This library is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+
+=cut

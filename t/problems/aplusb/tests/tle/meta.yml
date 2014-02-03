@@ -1,0 +1,28 @@
+test_name: Time Limit Exceeded
+test_description: A program which loops forever
+problem: aplusb
+expected_result: 10
+expected_result_text: 0 points
+expected_results:
+- id: 1
+  result: 3
+  result_text: Time Limit Exceeded
+- id: 2
+  result: 3
+  result_text: Time Limit Exceeded
+- id: 3
+  result: 3
+  result_text: Time Limit Exceeded
+- id: 4
+  result: 3
+  result_text: Time Limit Exceeded
+- id: 5
+  result: 3
+  result_text: Time Limit Exceeded
+- id: 6
+  result: 3
+  result_text: Time Limit Exceeded
+files:
+  prog:
+    format: CPP
+    name: prog.cpp

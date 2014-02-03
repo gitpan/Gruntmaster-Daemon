@@ -1,0 +1,12 @@
+Revision history for Perl extension Gruntmaster::Daemon.
+
+5999.000_001 2014-02-03T12:41
+ - Change version to something that CPAN::Distnameinfo likes
+ - Add Gruntmaster::Data to PREREQ_PM
+ - Add more POD
+ - Add repository in META.yml
+ - Add COPYING and fix license in META.yml
+ - Fix a POD error
+
+5999-TRIAL 2014-01-31T23:58
+ - Initial release

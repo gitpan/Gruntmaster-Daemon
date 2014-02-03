@@ -1,0 +1,10 @@
+---
+name: A-B
+generator: File
+judge: Absolute
+runner: File
+testcnt: 10
+timeout: 1
+mlimit: 20971520
+olimit: 100
+description: The A * 2 problem

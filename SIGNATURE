@@ -1,0 +1,130 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.73.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+SHA1 78e50e186b04c8fe1defaa098f1c192181b3d837 COPYING
+SHA1 ff9d787c07a720893f2cfefa6925b92ac2ec755e Changes
+SHA1 b1d91953b0ac3b2c56e36a5215bb54875de8eafc MANIFEST
+SHA1 86fc978c0a52efe07b781dc6afa8bcc13191937f META.json
+SHA1 353ab5b322251ec0578b6a1eaf7f8a6522bde0b2 META.yml
+SHA1 4bcc05318cae157d93deb03c183d484d33e142db Makefile.PL
+SHA1 0e809d111bcc5a6b4231b6a9f0f6bc2b2c7fc5aa README
+SHA1 e4ebe281adebb8147052f3e05b810be113dfef60 gruntmaster-compile
+SHA1 ad24213161c7ef42f61d4f01ab373f2832a464a4 gruntmaster-exec
+SHA1 d558d69bccb0e1fc1fde2527c55b13108590c46a gruntmasterd
+SHA1 f7126712ca296ffaabbc7784720801567dd12bf3 lib/Gruntmaster/Daemon.pm
+SHA1 fceafcadf20dd194608ba8d6bfb1408e06df6bee lib/Gruntmaster/Daemon/Constants.pm
+SHA1 157f54b4805c5ac5c90a66db9c9ede845c655830 lib/Gruntmaster/Daemon/Format.pm
+SHA1 eea3125312f228aec1d288e31db5a5a2998e8d8f lib/Gruntmaster/Daemon/Generator/File.pm
+SHA1 8e815180f591ed5da0abbb4a0ce0785f4f1d6d67 lib/Gruntmaster/Daemon/Generator/Run.pm
+SHA1 940f9f883ec149e2c2b468bab71005a12cb196c3 lib/Gruntmaster/Daemon/Generator/Undef.pm
+SHA1 e89e1cd7039e077aab646864c4fff9097f71afa0 lib/Gruntmaster/Daemon/Judge/Absolute.pm
+SHA1 faf29ae0398f55cdbbc3bf4a4673663056127ea9 lib/Gruntmaster/Daemon/Judge/Points.pm
+SHA1 d2f8f58306adf2dbb011e3b26f7d2e8141f852a0 lib/Gruntmaster/Daemon/Runner/File.pm
+SHA1 cb407e92629007e28429ed2bcb347f251ac68235 lib/Gruntmaster/Daemon/Runner/Interactive.pm
+SHA1 84c2a394a702b8652bfc9cbffe066c60ba444f35 lib/Gruntmaster/Daemon/Runner/Verifier.pm
+SHA1 52dcc66ee0b31f36c9090ead1b3d5589d5980aac log.conf
+SHA1 57dd44f4b1ac4f8378328912bceb9ef58e32c2b0 selinux/gruntmasterd.fc
+SHA1 e3686f41786654322f2c51172c1d8dc73b8f4333 selinux/gruntmasterd.te
+SHA1 3fd0d13ec4c13145d7ca84f6f867ae8d7c3d9ea8 t/00-compile.t
+SHA1 b9c8d7148a3ff68a45abc1f28e2fca9089e4be17 t/01-jobs.t
+SHA1 bb2edc0f53de4498933ead9b2be662eb04acc69b t/FakeData.pm
+SHA1 32d3c3db7c8157c3bb576fa546eb6e41322fb89e t/problems/aminusb/1.in
+SHA1 3168be9581457e51331c7985a85ca0b9d730dac7 t/problems/aminusb/2.in
+SHA1 647f3e157c1bb4a558a6a650c4dbd19a29548ad5 t/problems/aminusb/3.in
+SHA1 031a7fef25355434bbbfb15b1633f5909dafe0f3 t/problems/aminusb/4.in
+SHA1 11c76105dfe753b7dd6ace725afecb8bc262d854 t/problems/aminusb/5.in
+SHA1 207d87b226c1392e9e1bafcec59c374abd2f3905 t/problems/aminusb/meta.yml
+SHA1 f313729b064600509954158bdaa2e89dd3e4e740 t/problems/aminusb/tests/ac/meta.yml
+SHA1 06a51b6cfbe0e03a03f686e5891dc1d6af8e5a2a t/problems/aminusb/tests/ac/prog.cpp
+SHA1 7ff78b180a64e491924c7259823494a116014766 t/problems/aminusb/tests/wa/meta.yml
+SHA1 6133cace7f358625281599018eb04406a040e472 t/problems/aminusb/tests/wa/prog.cpp
+SHA1 8816a78a8ebc345d66f3c0a6279950fa531c1f62 t/problems/aminusb/ver.cpp
+SHA1 32d3c3db7c8157c3bb576fa546eb6e41322fb89e t/problems/aplusb/1.in
+SHA1 a3db5c13ff90a36963278c6a39e4ee3c22e2a436 t/problems/aplusb/1.ok
+SHA1 3168be9581457e51331c7985a85ca0b9d730dac7 t/problems/aplusb/2.in
+SHA1 dc68bdb4ef333928c5cffbf815b86387acebfcb8 t/problems/aplusb/2.ok
+SHA1 647f3e157c1bb4a558a6a650c4dbd19a29548ad5 t/problems/aplusb/3.in
+SHA1 89d5212f3639c1a3b943eec439c1adc9d54996c0 t/problems/aplusb/3.ok
+SHA1 031a7fef25355434bbbfb15b1633f5909dafe0f3 t/problems/aplusb/4.in
+SHA1 a59450934baebc69e26c66d6c63493fc9333464b t/problems/aplusb/4.ok
+SHA1 11c76105dfe753b7dd6ace725afecb8bc262d854 t/problems/aplusb/5.in
+SHA1 d1eda8d7ec442ffcb33ed27a4f0e3ebf909cf71c t/problems/aplusb/5.ok
+SHA1 c1a43f9168f996c534f4c4b9ed24e70bfaaf60ec t/problems/aplusb/6.in
+SHA1 6792b5b5439b8ae3d79c6d86373ca198fba00513 t/problems/aplusb/6.ok
+SHA1 8e0d0b1de816b5a5827264bf4ff59e6c85ba584d t/problems/aplusb/meta.yml
+SHA1 39a71b11f9d6c49d9a64737f598a3d0926b2ff72 t/problems/aplusb/tests/40/meta.yml
+SHA1 e7c7b8eafc757b3eda14d133fc0315ef9f6ef774 t/problems/aplusb/tests/40/prog.cpp
+SHA1 bca9965786b20386241a667871981ae853507c70 t/problems/aplusb/tests/ac/meta.yml
+SHA1 83b385f3ed8e328f00f2c27a77002f9bd899f8e0 t/problems/aplusb/tests/ac/prog.cpp
+SHA1 71ffd73e817ddaab5d4b95bcd34f1cde6123b584 t/problems/aplusb/tests/compile-error/meta.yml
+SHA1 20b619d784cf20f998c9150b0804fe97ee19f5c5 t/problems/aplusb/tests/compile-error/prog.cpp
+SHA1 b92474b0cb0948c825a10908813304140dccab21 t/problems/aplusb/tests/mle/meta.yml
+SHA1 a3541910c698647f19ccb5b54f923431c0cb1ede t/problems/aplusb/tests/mle/prog.cpp
+SHA1 7466c88989e7be6b78e4fe8cd9a5f27d25206a2c t/problems/aplusb/tests/nzx/meta.yml
+SHA1 35dc07394f20116fc5d30a7a9f8b9c0cf41f7431 t/problems/aplusb/tests/nzx/prog.cpp
+SHA1 5601aac25f498717bb5a307406147a11a8229827 t/problems/aplusb/tests/ole/meta.yml
+SHA1 33980bbcf864f26cd10dc187bd7fd1e69bb89597 t/problems/aplusb/tests/ole/prog.cpp
+SHA1 6c77e4666d49109abf1d349f602f9d44cd612104 t/problems/aplusb/tests/tle/meta.yml
+SHA1 beefad3917eaf5c0f05ec257d99619ca9426b947 t/problems/aplusb/tests/tle/prog.cpp
+SHA1 e5fa44f2b31c1fb553b6021e7360d07d5d91ff5e t/problems/double/1.in
+SHA1 7448d8798a4380162d4b56f9b452e2f6f9e24e7a t/problems/double/1.ok
+SHA1 14d6488d6cf28853f486decc6dc695e38d6b1ad9 t/problems/double/10.in
+SHA1 21ca6e06669fb8c1dbd6b0c29b0680d88d9ee676 t/problems/double/10.ok
+SHA1 7448d8798a4380162d4b56f9b452e2f6f9e24e7a t/problems/double/2.in
+SHA1 9c6b057a2b9d96a4067a749ee3b3b0158d390cf1 t/problems/double/2.ok
+SHA1 a3db5c13ff90a36963278c6a39e4ee3c22e2a436 t/problems/double/3.in
+SHA1 ccf271b7830882da1791852baeca1737fcbe4b90 t/problems/double/3.ok
+SHA1 3b69ad523338d8d6975e9883ea1e05b96fad1498 t/problems/double/4.in
+SHA1 a01b7a248827f6db4eb63326271a81a2d8b4446c t/problems/double/4.ok
+SHA1 cd9edaf3838972d88ccf9a11cdcf07b0f1fdc327 t/problems/double/5.in
+SHA1 e70ddc1819a366829128d9424920ac82cdf42e9a t/problems/double/5.ok
+SHA1 ddfb56b5723c7f3d42bf2f460b550e5171f281cf t/problems/double/6.in
+SHA1 496600e42241d5d6d7a40c7e83c7725b41228e0c t/problems/double/6.ok
+SHA1 b96f4bfba9c82e8cb5778c5a9ea8a8c5946d6cfb t/problems/double/7.in
+SHA1 981d0fd007b18dbed572b18597091e11de1c8fef t/problems/double/7.ok
+SHA1 e3e3472ae48bb3b15c483e6d1aa93d13c52dd61b t/problems/double/8.in
+SHA1 ce8adf6752c6687eb688246a70c54e094663115a t/problems/double/8.ok
+SHA1 af09e746564bd612e7b455e0d21d9f9c6ac9d522 t/problems/double/9.in
+SHA1 11bfe443f68a247fb3ffbc36990f0b8d861224c0 t/problems/double/9.ok
+SHA1 7088174ac90a042521c1cb5d739e541ae61205de t/problems/double/meta.yml
+SHA1 046a75df8348be14947e30011fc3447a8edb980f t/problems/double/tests/wa/meta.yml
+SHA1 ccef62f8a01eed12d1305a003d6a4a26057b0178 t/problems/double/tests/wa/prog.cpp
+SHA1 cbcfe14e2c042df5229faf331f51c6267b14a67d t/problems/increment/int.cpp
+SHA1 4a3b7be4a8792b974b781aac4c7584de5665fb0c t/problems/increment/meta.yml
+SHA1 8f69a9a8eaccc3286e542d98f75767f73b10432c t/problems/increment/tests/ac/meta.yml
+SHA1 42d59d0c64ba6e5394dbba7b096cd63b163cef69 t/problems/increment/tests/ac/prog.cpp
+SHA1 24a8f464d2fb162d1edd02cc6735203310e7aa28 t/problems/square/gen.cpp
+SHA1 02f64fd065c6bc7d98625d5a78a612bf2ccfe3df t/problems/square/meta.yml
+SHA1 9968505e6987e59e6d6d71f6609801df682de791 t/problems/square/tests/ac/meta.yml
+SHA1 88121845b9d0afd75f0ab2639bc744d0b0b3db7c t/problems/square/tests/ac/prog.cpp
+SHA1 93ea341529775e99c1503463f6ef04acc39f9aec t/problems/square/ver.cpp
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iQIcBAEBCgAGBQJS73J+AAoJEMoENb5ewbNiMhEQAIUs1Do32nNCXyLGohBZfN+G
+XX4zge0VqtOYBBk6pjFtokcrZDhoCR0YcpEAuKLshJquLR6gv41GxxaQ1QLUr3ao
+3BCR7O3mstSAh+c3cGjgKVXMEA4dZrsDazK+3hW7dW4yQzHTSZ58b3T8bBbMpLMZ
+lXLK+NfDKNqgpmGCciUm1NpbfyGWibn58SxB9tOzSQdc/Y0gB8kOM6ekMlWqytYo
+66IL4L1cu3fZJhxzi4fVHndHRUXGaX7Uj8+kBb5XLJw6G37DUrOR4q9zENl+ejXo
+1ZmuoMspSZW5JBctTln/NIgtR0F7T0jqKVWLTKbHVmle5ScSF3rMyGyVF1sRcSmz
+pmr10mOdJPAKqodyY5OG1LeVHXUVlm0pXFeIKsyxZ1jnVQKXj4oVr261A/UKVdkR
+HFI6n9NYJGH3YHoCDJTdzIBj5lqWU+Dp+0RjwaI/4FosEE8AovzzrOh4sSIVF8OW
+MHoAx6JCyk3cZBCUNcJZs8RApZg/5DuKfjkBit2kNNZRansDyYpssFN9T68xQIU9
+6ZgBHMowE5bP9GtInEAZ3ptA43m9Kkq27dVeJlf91voUw+xPkQFYmE7TLMWPjIrT
+B4m8EWQk0p50FY5b86GDKyttWMfrfQRgfnKg7kKW1/0R9k0MItV3PKYWg3hnot0v
+HWdHQB6u/qVrV0APF+yg
+=Sz2l
+-----END PGP SIGNATURE-----

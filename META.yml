@@ -1,0 +1,48 @@
+---
+abstract: 'Gruntmaster 6000 Online Judge -- daemon'
+author:
+  - 'Marius Gavrilescu <marius@ieval.ro>'
+build_requires:
+  Cwd: 0
+  File::Copy: 0
+  File::Copy::Recursive: 0
+  File::Path: 0
+  File::Temp: 0
+  List::Util: 0
+  Log::Log4perl: 0
+  Test::More: 0
+  YAML::Any: 0
+configure_requires:
+  ExtUtils::MakeMaker: 0
+dynamic_config: 0
+generated_by: 'ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.133380'
+license: open_source
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Gruntmaster-Daemon
+no_index:
+  directory:
+    - t
+    - inc
+requires:
+  BSD::Resource: 0
+  Exporter: 0
+  File::Basename: 0
+  File::Copy: 0
+  File::Slurp: 0
+  File::Temp: 0
+  Gruntmaster::Data: 0
+  IPC::Signal: 0
+  List::MoreUtils: 0
+  List::Util: 0
+  Log::Log4perl: 0
+  POSIX: 0
+  Sys::Hostname: 0
+  Time::HiRes: 0
+  Try::Tiny: 0
+  perl: 5.014000
+  sigtrap: 0
+resources:
+  repository: https://git.ieval.ro/?p=gruntmaster-daemon.git
+version: 5999.000_001

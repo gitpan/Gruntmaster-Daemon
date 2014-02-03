@@ -1,0 +1,13 @@
+---
+name: Increment
+generator: Undef
+judge: Points
+runner: Interactive
+testcnt: 5
+timeout: 1
+mlimit: 20971520
+description: A trivial interactive problem
+files:
+  int:
+    format: CPP
+    name: int.cpp

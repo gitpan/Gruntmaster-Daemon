@@ -1,0 +1,6 @@
+/usr/(local/)?bin/gruntmasterd        gen_context(system_u:object_r:gruntmasterd_exec_t, s0)
+/usr/(local/)?bin/gruntmaster-compile gen_context(system_u:object_r:gruntmaster_compile_exec_t, s0)
+/usr/(local/)?bin/gruntmaster-exec    gen_context(system_u:object_r:gruntmaster_job_exec_t, s0)
+/usr/(local/)?bin/gruntmaster-paged   gen_context(system_u:object_r:gruntmaster_paged_exec_t, s0)
+/etc/gruntmasterd(/.*)?               gen_context(system_u:object_r:gruntmasterd_etc_t, s0)
+/var/log/gruntmasterd                 gen_context(system_u:object_r:gruntmasterd_log_t, s0)

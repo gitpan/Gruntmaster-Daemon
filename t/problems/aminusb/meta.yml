@@ -1,0 +1,14 @@
+---
+name: A-B
+generator: File
+judge: Points
+runner: Verifier
+testcnt: 5
+timeout: 1
+mlimit: 20971520
+olimit: 100
+description: The A-B problem, with a verifier
+files:
+  ver:
+    format: CPP
+    name: ver.cpp

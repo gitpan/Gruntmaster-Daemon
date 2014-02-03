@@ -1,0 +1,25 @@
+test_name: Wrong answer
+test_description: A program which does nothing
+problem: aminusb
+expected_result: 10
+expected_result_text: 0 points
+expected_results:
+- id: 1
+  result: 1
+  result_text: Wrong answer
+- id: 2
+  result: 1
+  result_text: Wrong answer
+- id: 3
+  result: 1
+  result_text: Wrong answer
+- id: 4
+  result: 1
+  result_text: Wrong answer
+- id: 5
+  result: 1
+  result_text: Wrong answer
+files:
+  prog:
+    format: CPP
+    name: prog.cpp

@@ -1,0 +1,93 @@
+#!/usr/bin/perl -w
+use v5.14;
+no if $] > 5.017011, warnings => 'experimental::smartmatch';
+
+use File::Copy qw/copy/;
+use File::Basename qw/fileparse/;
+
+my ($format, $name) = @ARGV;
+my $basename = fileparse $name, qr/\..*/;
+
+my $ret = fork // die $!;
+if ($ret) {
+	$SIG{ALRM} = sub {kill KILL => $ret};
+	alarm 5;
+	wait;
+	exit $? >> 8
+} else {
+	given ($format){
+		exec 'gcc', qw/-DONLINE_JUDGE -std=gnu11 -Wall -Wextra -O2 -o/, $basename, $name when 'C';
+		exec 'g++', qw/-DONLINE_JUDGE -std=gnu++11 -fabi-version=6 -Wall -Wextra -O2 -o/, $basename, $name when 'CPP';
+		exec 'gmcs', '-d:ONLINE_JUDGE', $name when  'MONO';
+		exec 'javac', $name when 'JAVA';
+		exec 'fpc', qw/-dONLINE_JUDGE -O2 -n/, $name when 'PASCAL';
+		copy $name, $basename when ['PERL', 'PYTHON']
+	}
+}
+
+__END__
+
+=encoding utf-8
+
+=head1 NAME
+
+gruntmaster-compile - Gruntmaster 6000 compiler frontend
+
+=head1 SYNOPSIS
+
+  gruntmaster-compile CPP file.cpp
+  gruntmaster-compile JAVA file.java
+
+=head1 DESCRIPTION
+
+gruntmaster-compile is a very simple frontend to various comilers. It takes two arguments: the file format and the file name, and produces a compiled executable. The executable's name is the basename of the input file.
+
+Compile commands for each format:
+
+=over
+
+=item C
+
+  gcc -DONLINE_JUDGE -std=gnu11 -Wall -Wextra -O2 -o $output $input
+
+=item CPP
+
+  g++ -DONLINE_JUDGE -std=gnu11 -fabi-version=6 -Wall -Wextra -O2 -o $output $input
+
+=item MONO
+
+  gmcs -d:ONLINE_JUDGE $input
+
+=item JAVA
+
+  javac $input
+
+=item PASCAL
+
+  fpc -dONLINE_JUDGE -O2 -n $input
+
+=item PERL
+
+  cp $input $output
+
+=item PYTHON
+
+  cp $input $output
+
+=back
+
+=head1 AUTHOR
+
+Marius Gavrilescu E<lt>marius@ieval.roE<gt>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2014 by Marius Gavrilescu
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+
+=cut

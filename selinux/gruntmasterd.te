@@ -1,0 +1,137 @@
+policy_module(gruntmasterd, 1.0)
+
+define(`read_file_perms',         `{ getattr ioctl read lock open }')
+define(`read_dir_perms',          `{ getattr ioctl read lock open search}')
+define(`everything_file_perms',   `{ getattr ioctl read lock open unlink setattr append write create rename link }')
+define(`everything_dir_perms',    `{ getattr ioctl read lock open search unlink setattr write create rename link rmdir remove_name reparent add_name }')
+define(`domain_read_files',       `allow $1 $2 : dir read_dir_perms;       allow $1 $2 : file read_file_perms;       allow $1 $2 : lnk_file read_file_perms;')
+define(`domain_everything_files', `allow $1 $2 : dir everything_dir_perms; allow $1 $2 : file everything_file_perms; allow $1 $2 : lnk_file everything_file_perms;')
+define(`gruntmaster_read',        `domain_read_files(gruntmasterd_t, $1)')
+define(`gruntmaster_everything',  `domain_everything_files(gruntmasterd_t, $1)')
+
+require{
+	type bin_t;
+	type httpd_sys_content_rw_t;
+	type httpd_sys_content_t;
+	type httpd_t;
+	type httpd_tmp_t;
+	type port_t;
+	type proc_t;
+	type urandom_device_t;
+}
+
+# Types
+type gruntmasterd_t;
+type gruntmasterd_etc_t;
+type gruntmasterd_exec_t;
+type gruntmasterd_log_t;
+type gruntmasterd_tmp_t;
+type gruntmaster_job_t;
+type gruntmaster_job_exec_t;
+type gruntmaster_compile_t;
+type gruntmaster_compile_exec_t;
+type gruntmaster_paged_t;
+type gruntmaster_paged_exec_t;
+
+domain_type(gruntmaster_job_t)
+domain_entry_file(gruntmaster_job_t, gruntmaster_job_exec_t)
+role system_r types gruntmaster_job_t;
+
+domain_type(gruntmaster_compile_t)
+domain_entry_file(gruntmaster_compile_t, gruntmaster_compile_exec_t)
+role system_r types gruntmaster_compile_t;
+type_transition gruntmaster_compile_t gruntmasterd_tmp_t : file gruntmaster_job_exec_t;
+
+init_daemon_domain(gruntmaster_paged_t, gruntmaster_paged_exec_t)
+type_transition gruntmaster_paged_t httpd_sys_content_t : { file dir } httpd_sys_content_rw_t;
+
+init_daemon_domain(gruntmasterd_t, gruntmasterd_exec_t)
+logging_log_file(gruntmasterd_log_t)
+logging_log_filetrans(gruntmasterd_t, gruntmasterd_log_t, file)
+logging_search_logs(gruntmasterd_t)
+type_transition gruntmasterd_t gruntmaster_compile_exec_t : process gruntmaster_compile_t;
+type_transition gruntmasterd_t gruntmaster_job_exec_t : process gruntmaster_job_t;
+type_transition gruntmasterd_t tmp_t : dir gruntmasterd_tmp_t;
+files_type(gruntmasterd_tmp_t)
+files_type(gruntmasterd_etc_t)
+
+# Daemon permissions
+allow gruntmasterd_t { gruntmaster_compile_t gruntmaster_job_t } : process { sigkill siginh rlimitinh transition };
+allow gruntmasterd_t bin_t : file { execute execute_no_trans };
+allow gruntmasterd_t self : process fork;
+allow gruntmasterd_t self:fifo_file everything_file_perms;
+allow gruntmasterd_t urandom_device_t:chr_file read_file_perms;
+allow gruntmasterd_t { gruntmaster_compile_exec_t gruntmaster_job_exec_t } : file execute;
+allow gruntmasterd_t port_t:tcp_socket name_connect;
+allow gruntmasterd_t self:tcp_socket { read write create ioctl connect };
+dontaudit gruntmasterd_t { gruntmaster_compile_t gruntmaster_job_t } : process noatsecure;
+
+allow gruntmasterd_t tmp_t : dir { getattr write search add_name };
+
+gruntmaster_read(bin_t)
+gruntmaster_read(gruntmaster_compile_exec_t)
+gruntmaster_read(gruntmasterd_etc_t)
+gruntmaster_read(gruntmaster_job_exec_t)
+gruntmaster_read(httpd_sys_content_t)
+gruntmaster_read(lib_t)
+gruntmaster_read(proc_t)
+gruntmaster_read(usr_t)
+
+gruntmaster_everything(gruntmasterd_log_t)
+gruntmaster_everything(gruntmasterd_tmp_t)
+
+files_read_etc_files(gruntmasterd_t)
+files_search_etc(gruntmasterd_t)
+libs_use_ld_so(gruntmasterd_t)
+libs_use_shared_libs(gruntmasterd_t)
+miscfiles_read_localization(gruntmasterd_t)
+
+# Executor and job permissions
+domain_read_files(gruntmaster_job_t, bin_t)
+domain_read_files(gruntmaster_job_t, usr_t)
+allow gruntmaster_job_t gruntmaster_job_exec_t : file { execute execute_no_trans };
+allow gruntmaster_job_t gruntmasterd_t:fd use;
+allow gruntmaster_job_t gruntmasterd_t:process sigchld;
+allow gruntmaster_job_t gruntmasterd_tmp_t : dir read_dir_perms;
+allow gruntmaster_job_t gruntmasterd_tmp_t : file { getattr ioctl read write };
+allow gruntmaster_job_t init_t:fd use;
+allow gruntmaster_job_t self:process setrlimit;
+allow gruntmaster_job_t urandom_device_t:chr_file read_file_perms;
+
+libs_use_ld_so(gruntmaster_job_t)
+libs_use_shared_libs(gruntmaster_job_t)
+miscfiles_read_localization(gruntmaster_job_t)
+
+# Compile permissions
+domain_everything_files(gruntmaster_compile_t, gruntmaster_job_exec_t)
+domain_everything_files(gruntmaster_compile_t, tmp_t)
+domain_read_files(gruntmaster_compile_t, bin_t)
+domain_read_files(gruntmaster_compile_t, lib_t)
+domain_read_files(gruntmaster_compile_t, proc_t)
+domain_read_files(gruntmaster_compile_t, proc_t)
+domain_read_files(gruntmaster_compile_t, usr_t)
+domain_read_files(gruntmaster_compile_t, gruntmasterd_tmp_t)
+allow gruntmaster_compile_t gruntmasterd_t : fifo_file { read write ioctl };
+allow gruntmaster_compile_t gruntmasterd_t:fd use;
+allow gruntmaster_compile_t gruntmasterd_t:process sigchld;
+allow gruntmaster_compile_t gruntmasterd_tmp_t:dir { write add_name };
+allow gruntmaster_compile_t self : fifo_file { read write ioctl };
+allow gruntmaster_compile_t self:process signal;
+allow gruntmaster_compile_t urandom_device_t:chr_file read_file_perms;
+allow gruntmaster_compile_t { bin_t lib_t } : file { execute execute_no_trans };
+
+libs_use_ld_so(gruntmaster_compile_t)
+libs_use_shared_libs(gruntmaster_compile_t)
+miscfiles_read_localization(gruntmaster_compile_t)
+
+# Page generator permissions
+domain_everything_files(gruntmaster_paged_t, httpd_sys_content_rw_t)
+domain_read_files(gruntmaster_paged_t, usr_t)
+domain_read_files(gruntmaster_paged_t, bin_t)
+allow gruntmaster_paged_t urandom_device_t:chr_file read_file_perms;
+allow gruntmaster_paged_t port_t:tcp_socket name_connect;
+allow gruntmaster_paged_t self:tcp_socket { read write create ioctl connect };
+
+libs_use_ld_so(gruntmaster_paged_t)
+libs_use_shared_libs(gruntmaster_paged_t)
+miscfiles_read_localization(gruntmaster_paged_t)

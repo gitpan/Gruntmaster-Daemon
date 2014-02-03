@@ -1,0 +1,49 @@
+#!/usr/bin/perl -w
+use v5.14;
+use strict;
+
+use BSD::Resource qw/setrlimit RLIMIT_AS RLIMIT_FSIZE/;
+use sigtrap qw/XFSZ/;
+
+##################################################
+
+my ($mlimit, $olimit, @args) = @ARGV;
+
+setrlimit RLIMIT_AS, $mlimit, $mlimit or die $! if $mlimit;
+setrlimit RLIMIT_FSIZE, $olimit, $olimit or die $! if $olimit;
+
+%ENV = (ONLINE_JUDGE => 1, PATH => $ENV{PATH}, HOME => $ENV{PATH});
+exec @args;
+
+__END__
+
+=encoding utf-8
+
+=head1 NAME
+
+gruntmaster-exec - Gruntmaster 6000 executor
+
+=head1 SYNOPSIS
+
+  gruntmaster-exec 20000000 111 echo 'Hello, world!'
+
+=head1 DESCRIPTION
+
+gruntmaster-exec is the script used by gruntmasterd to run programs.
+
+The first argument is the address space limit (in bytes), the second argument is the output limit (also in bytes). The rest of the arguments are the command that should be run and its arguments.
+
+gruntmaster-exec sets the resource limits, cleans the environment (except for PATH and HOME), adds the ONLINE_JUDGE environment variable with value 1, and finally C<exec>s the given command.
+
+=head1 AUTHOR
+
+Marius Gavrilescu E<lt>marius@ieval.roE<gt>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2014 by Marius Gavrilescu
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.

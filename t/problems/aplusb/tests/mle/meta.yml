@@ -1,0 +1,28 @@
+test_name: Memory Limit Exceeded
+test_description: A program which uses up a lot of memory
+problem: aplusb
+expected_result: 10
+expected_result_text: 0 points
+expected_results:
+- id: 1
+  result: 5
+  result_text: Crash (SIGKILL)
+- id: 2
+  result: 5
+  result_text: Crash (SIGKILL)
+- id: 3
+  result: 5
+  result_text: Crash (SIGKILL)
+- id: 4
+  result: 5
+  result_text: Crash (SIGKILL)
+- id: 5
+  result: 5
+  result_text: Crash (SIGKILL)
+- id: 6
+  result: 5
+  result_text: Crash (SIGKILL)
+files:
+  prog:
+    format: CPP
+    name: prog.cpp

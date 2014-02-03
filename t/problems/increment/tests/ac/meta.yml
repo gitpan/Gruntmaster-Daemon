@@ -1,0 +1,25 @@
+test_name: Accepted
+test_description: A program which works correctly
+problem: increment
+expected_result: 0
+expected_result_text: Accepted
+expected_results:
+- id: 1
+  result: 0
+  result_text: 20
+- id: 2
+  result: 0
+  result_text: 20
+- id: 3
+  result: 0
+  result_text: 20
+- id: 4
+  result: 0
+  result_text: 20
+- id: 5
+  result: 0
+  result_text: 20
+files:
+  prog:
+    format: CPP
+    name: prog.cpp

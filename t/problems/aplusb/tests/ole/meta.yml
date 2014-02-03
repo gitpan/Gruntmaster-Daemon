@@ -1,0 +1,28 @@
+test_name: Output Limit Exceeded
+test_description: A program which outputs a lot of nonsense
+problem: aplusb
+expected_result: 10
+expected_result_text: 0 points
+expected_results:
+- id: 1
+  result: 4
+  result_text: Output Limit Exceeded
+- id: 2
+  result: 4
+  result_text: Output Limit Exceeded
+- id: 3
+  result: 4
+  result_text: Output Limit Exceeded
+- id: 4
+  result: 4
+  result_text: Output Limit Exceeded
+- id: 5
+  result: 4
+  result_text: Output Limit Exceeded
+- id: 6
+  result: 4
+  result_text: Output Limit Exceeded
+files:
+  prog:
+    format: CPP
+    name: prog.cpp
