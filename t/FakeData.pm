@@ -18,8 +18,14 @@ sub set_job_results		{ $jobs[$_[0]]{results} = $_[1] };
 sub set_job_errors			{ $jobs[$_[0]]{errors} = $_[1] };
 sub set_job_daemon			{ $jobs[$_[0]]{daemon} = $_[1] };
 
-sub problem_meta			{ $problems{$_[0]}{meta} }
+sub problem_meta			{ $problems{$_}{meta} }
 sub set_problem_meta		{ $problems{$_[0]}{meta} = $_[1] }
+sub problem_generator {}
+sub problem_runner {}
+sub problem_judge {}
+sub problem_testcnt {}
+sub problem_timeout {}
+sub problem_olimit {}
 
 sub get_job { $jobs[$_[0]] }
 

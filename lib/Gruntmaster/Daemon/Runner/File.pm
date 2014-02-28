@@ -8,7 +8,7 @@ use Gruntmaster::Daemon::Constants qw/WA/;
 use File::Slurp qw/slurp/;
 use Log::Log4perl qw/get_logger/;
 
-our $VERSION = "5999.000_001";
+our $VERSION = "5999.000_002";
 
 ##################################################
 
@@ -17,7 +17,13 @@ sub run{
   get_logger->trace("Running on test $test...");
   $meta->{files}{prog}{run}->($meta->{files}{prog}{name}, fds => [qw/0 input 1 >output/], map {defined $meta->{$_} ? ($_ => $meta->{$_}) : () } qw/timeout olimit mlimit/);
   my $out = slurp 'output';
-  my $ok = $meta->{okfile}[$test - 1];
+  my $ok;
+  if (exists $meta->{okfile}) {
+	  $ok = $meta->{okfile}[$test - 1]
+  } else {
+	  my $ct = defined $Gruntmaster::Data::contest ? "ct/$Gruntmaster::Data::contest" : '';
+	  $ok = slurp "/var/lib/gruntmasterd/$ct/pb/$meta->{problem}/$test.ok"
+  }
 
   $out =~ s/^\s+//;
   $ok  =~ s/^\s+//;

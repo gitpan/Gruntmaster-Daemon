@@ -9,7 +9,7 @@ use File::Slurp qw/slurp/;
 use Log::Log4perl qw/get_logger/;
 use Try::Tiny;
 
-our $VERSION = '5999.000_001';
+our $VERSION = '5999.000_002';
 
 ##################################################
 
@@ -19,7 +19,7 @@ sub run{
   $meta->{files}{prog}{run}->($meta->{files}{prog}{name}, fds => [qw/0 input 1 >output/], map {defined $meta->{$_} ? ($_ => $meta->{$_}) : () } qw/timeout olimit mlimit/);
 
   try {
-	$meta->{files}{ver}{run}->($meta->{files}{ver}{name}, fds => [qw/0 input 3 output 1 >result/]);
+	$meta->{files}{ver}{run}->($meta->{files}{ver}{name}, fds => [qw/0 input 3 output 1 >result/], args => [$test]);
   } catch {
 	die [WA, "Wrong answer"]
   };

@@ -20,7 +20,7 @@ if ($ret) {
 		exec 'g++', qw/-DONLINE_JUDGE -std=gnu++11 -fabi-version=6 -Wall -Wextra -O2 -o/, $basename, $name when 'CPP';
 		exec 'gmcs', '-d:ONLINE_JUDGE', $name when  'MONO';
 		exec 'javac', $name when 'JAVA';
-		exec 'fpc', qw/-dONLINE_JUDGE -O2 -n/, $name when 'PASCAL';
+		exec 'fpc', qw/-dONLINE_JUDGE -O2/, $name when 'PASCAL';
 		copy $name, $basename when ['PERL', 'PYTHON']
 	}
 }

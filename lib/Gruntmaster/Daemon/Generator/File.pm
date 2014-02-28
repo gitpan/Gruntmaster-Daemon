@@ -4,17 +4,23 @@ use 5.014000;
 use strict;
 use warnings;
 
+use File::Copy qw/copy/;
 use File::Slurp qw/write_file/;
 use Log::Log4perl qw/get_logger/;
 
-our $VERSION = "5999.000_001";
+our $VERSION = "5999.000_002";
 
 ##################################################
 
 sub generate{
   my ($test, $meta) = @_;
   get_logger->trace("Generating test $test ...");
-  write_file 'input', $meta->{infile}[$test - 1]
+  if (exists $meta->{infile}) {
+	  write_file 'input', $meta->{infile}[$test - 1]
+  } else {
+	  my $ct = defined $Gruntmaster::Data::contest ? "ct/$Gruntmaster::Data::contest" : '';
+	  copy "/var/lib/gruntmasterd/$ct/pb/$meta->{problem}/$test.in", 'input'
+  }
 }
 
 1;

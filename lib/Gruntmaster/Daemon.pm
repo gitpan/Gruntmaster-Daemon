@@ -4,7 +4,7 @@ use 5.014000;
 use strict;
 use warnings;
 
-our $VERSION = '5999.000_001';
+our $VERSION = '5999.000_002';
 
 use Gruntmaster::Daemon::Constants qw/ERR/;
 use Gruntmaster::Daemon::Format qw/prepare_files/;
@@ -16,10 +16,14 @@ use Sys::Hostname qw/hostname/;
 use Time::HiRes qw/time/;
 use Try::Tiny;
 use Log::Log4perl qw/get_logger/;
+use LWP::UserAgent;
 
 use constant PAGE_SIZE => 10;
 
 ##################################################
+
+my $ua = LWP::UserAgent->new;
+my @purge_hosts = exists $ENV{PURGE_HOSTS} ? split ' ', $ENV{PURGE_HOSTS} : ();
 
 sub safe_can_nodie {
   my ($type, $sub, $name) = @_;
@@ -37,6 +41,13 @@ sub safe_can {
   safe_can_nodie @_ or get_logger->logdie("No such \l$type: '$name'");
 }
 
+sub purge {
+	for my $host (@purge_hosts) {
+		my $req = HTTP::Request->new(PURGE => "http://$host$_[0]");
+		$ua->request($req)
+	}
+}
+
 sub process{
   my $job = shift;
 
@@ -47,9 +58,20 @@ sub process{
   try {
 	$meta = job_inmeta $job;
 	if (job_problem $job) {
-	  my $pbmeta = problem_meta job_problem $job;
+	  local $_ = job_problem $job;
+	  my $pbmeta = problem_meta;
 	  my %files = exists $meta->{files} ? %{$meta->{files}} : ();
-	  $meta = {%$meta, %$pbmeta};
+	  $meta = {
+		  %$meta,
+		  problem => $_,
+		  (defined problem_generator() ? (generator => problem_generator) : ()),
+		  (defined problem_runner()    ? (runner    => problem_runner)    : ()),
+		  (defined problem_judge()     ? (judge     => problem_judge)     : ()),
+		  (defined problem_testcnt()   ? (testcnt   => problem_testcnt)   : ()),
+		  (defined problem_timeout()   ? (timeout   => problem_timeout)   : ()),
+		  (defined problem_olimit()    ? (olimit    => problem_olimit)    : ()),
+		  %$pbmeta
+	  };
 	  $meta->{files} = {%files, %{$pbmeta->{files}}} if exists $pbmeta->{files};
 	}
 
@@ -112,6 +134,11 @@ sub process{
   PUBLISH genpage => "$log/@{[$page - 1]}.html";
   PUBLISH genpage => "$log/$page.html";
   PUBLISH genpage => "$log/@{[$page + 1]}.html";
+
+  purge "/$log/job/$job";
+  purge "/$log/";
+  purge "/$log/st";
+  purge "/$log/$_" for $page - 1, $page, $page + 1;
 }
 
 sub got_job{

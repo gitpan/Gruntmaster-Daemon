@@ -11,10 +11,12 @@ define(`gruntmaster_everything',  `domain_everything_files(gruntmasterd_t, $1)')
 
 require{
 	type bin_t;
+	type http_port_t;
 	type httpd_sys_content_rw_t;
 	type httpd_sys_content_t;
 	type httpd_t;
 	type httpd_tmp_t;
+	type net_conf_t;
 	type port_t;
 	type proc_t;
 	type urandom_device_t;
@@ -26,6 +28,7 @@ type gruntmasterd_etc_t;
 type gruntmasterd_exec_t;
 type gruntmasterd_log_t;
 type gruntmasterd_tmp_t;
+type gruntmasterd_var_lib_t;
 type gruntmaster_job_t;
 type gruntmaster_job_exec_t;
 type gruntmaster_compile_t;
@@ -54,6 +57,7 @@ type_transition gruntmasterd_t gruntmaster_job_exec_t : process gruntmaster_job_
 type_transition gruntmasterd_t tmp_t : dir gruntmasterd_tmp_t;
 files_type(gruntmasterd_tmp_t)
 files_type(gruntmasterd_etc_t)
+files_type(gruntmasterd_var_lib_t)
 
 # Daemon permissions
 allow gruntmasterd_t { gruntmaster_compile_t gruntmaster_job_t } : process { sigkill siginh rlimitinh transition };
@@ -63,6 +67,9 @@ allow gruntmasterd_t self:fifo_file everything_file_perms;
 allow gruntmasterd_t urandom_device_t:chr_file read_file_perms;
 allow gruntmasterd_t { gruntmaster_compile_exec_t gruntmaster_job_exec_t } : file execute;
 allow gruntmasterd_t port_t:tcp_socket name_connect;
+allow gruntmasterd_t http_port_t:tcp_socket name_connect;
+allow gruntmasterd_t net_conf_t:file { read getattr open };
+allow gruntmasterd_t self:udp_socket { write read create connect getattr };
 allow gruntmasterd_t self:tcp_socket { read write create ioctl connect };
 dontaudit gruntmasterd_t { gruntmaster_compile_t gruntmaster_job_t } : process noatsecure;
 
@@ -71,6 +78,7 @@ allow gruntmasterd_t tmp_t : dir { getattr write search add_name };
 gruntmaster_read(bin_t)
 gruntmaster_read(gruntmaster_compile_exec_t)
 gruntmaster_read(gruntmasterd_etc_t)
+gruntmaster_read(gruntmasterd_var_lib_t)
 gruntmaster_read(gruntmaster_job_exec_t)
 gruntmaster_read(httpd_sys_content_t)
 gruntmaster_read(lib_t)

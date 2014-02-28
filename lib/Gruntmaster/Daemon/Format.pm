@@ -15,7 +15,7 @@ use List::MoreUtils qw/natatime/;
 use Log::Log4perl qw/get_logger/;
 use IPC::Signal qw/sig_name sig_num/;
 
-our $VERSION = "5999.000_001";
+our $VERSION = "5999.000_002";
 our @EXPORT_OK = qw/prepare_files/;
 
 ##################################################
@@ -26,9 +26,9 @@ sub command_and_args{
 	given($format) {
 		"./$basename" when [qw/C CPP PASCAL/];
 		"./$basename.exe" when 'MONO';
-		"java $basename" when 'JAVA';
-		"perl $basename" when 'PERL';
-		"python $basename" when 'PYTHON';
+		java => $basename when 'JAVA';
+		perl => $basename when 'PERL';
+		python => $basename when 'PYTHON';
 		default { die "Don't know how to execute format $format" }
 	}
 }
@@ -72,11 +72,10 @@ sub mkrun{
 
 sub prepare{
 	my ($name, $format) = @_;
-	our $errors;
 	get_logger->trace("Preparing file $name...");
 
-	$errors .= `gruntmaster-compile $format $name 2>&1`;
-	$errors .= "\n";
+	$Gruntmaster::Daemon::errors .= `gruntmaster-compile $format $name 2>&1`;
+	$Gruntmaster::Daemon::errors .= "\n";
 	die 'Compile error' if $?
 }
 
