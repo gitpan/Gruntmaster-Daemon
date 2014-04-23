@@ -1,0 +1,44 @@
+=encoding utf-8
+
+=head1 NAME
+
+Gruntmaster::Daemon::Runner - Modules for running tests
+
+=head1 SYNOPSIS
+
+  use Gruntmaster::Daemon::Runner::Foo;
+  Gruntmaster::Daemon::Runner::Foo::run(5, $meta);
+
+=head1 DESCRIPTION
+
+A runner is a module that runs a program on some input data, returning a verdict. Each runner has a subroutine, B<run>(I<$test>, I<$meta>), which runs the program on the given test and returns a verdict.
+
+If the test is successful, the verdict is a string, usually a message (such as C<"Ok">) or a number of points (such as C<"10">). Otherwise, the verdict is an array reference with two elements: an error code (see L<Gruntmaster::Daemon::Constants> for a list) and an error message.
+
+There are three runners in this distribution:
+
+=over
+
+=item L<Gruntmaster::Daemon::Runner::File> - Compare output with static text files
+
+=item L<Gruntmaster::Daemon::Runner::Verifier> - Check the program output with a verifier
+
+=item L<Gruntmaster::Daemon::Runner::Interactive> - Make an interactive verifier talk to the program
+
+=back
+
+=head1 AUTHOR
+
+Marius Gavrilescu E<lt>marius@ieval.roE<gt>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2014 by Marius Gavrilescu
+
+This library is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+
+=cut

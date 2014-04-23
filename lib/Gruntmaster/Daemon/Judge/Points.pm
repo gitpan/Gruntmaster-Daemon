@@ -8,15 +8,15 @@ use Gruntmaster::Daemon::Constants qw/AC REJ/;
 use List::Util qw/sum/;
 use Log::Log4perl qw/get_logger/;
 
-our $VERSION = '5999.000_002';
+our $VERSION = '5999.000_003';
 
 ##################################################
 
 sub judge{
-  no warnings qw/numeric/;
-  get_logger->trace("Judging results: @_");
-  my $points = sum 0, grep { !ref } @_;
-  $points == 100 ? (result => AC, result_text => 'Accepted') : (result => REJ, result_text => "$points points", points => $points)
+	no warnings qw/numeric/;
+	get_logger->trace("Judging results: @_");
+	my $points = sum 0, grep { !ref } @_;
+	$points == 100 ? (result => AC, result_text => 'Accepted') : (result => REJ, result_text => "$points points", points => $points)
 }
 
 1;
@@ -31,7 +31,7 @@ Gruntmaster::Daemon::Judge::Points - 0 to 100 points IOI-style judge
 =head1 SYNOPSIS
 
   use Gruntmaster::Daemon::Judge::Points;
-  Gruntmaster::Daemon::Judge::Points->judge($result1, $result2, $result3, ...);
+  Gruntmaster::Daemon::Judge::Points::judge($result1, $result2, $result3, ...);
 
 =head1 DESCRIPTION
 

@@ -8,6 +8,6 @@ timeout: 1
 mlimit: 20971520
 description: A trivial interactive problem
 files:
-  int:
+  ver:
     format: CPP
     name: int.cpp

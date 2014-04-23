@@ -64,7 +64,7 @@ Compile commands for each format:
 
 =item PASCAL
 
-  fpc -dONLINE_JUDGE -O2 -n $input
+  fpc -dONLINE_JUDGE -O2 $input
 
 =item PERL
 

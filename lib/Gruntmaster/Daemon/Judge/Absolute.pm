@@ -6,7 +6,7 @@ use warnings;
 
 use Gruntmaster::Daemon::Constants qw/AC/;
 
-our $VERSION = '5999.000_002';
+our $VERSION = '5999.000_003';
 
 ##################################################
 
@@ -27,7 +27,7 @@ Gruntmaster::Daemon::Judge::Absolute - All-or-nothing ACM-style judge
 =head1 SYNOPSIS
 
   use Gruntmaster::Daemon::Judge::Absolute;
-  Gruntmaster::Daemon::Judge::Absolute->judge($result1, $result2, $result3, ...);
+  Gruntmaster::Daemon::Judge::Absolute::judge($result1, $result2, $result3, ...);
 
 =head1 DESCRIPTION
 

@@ -1,11 +1,16 @@
 Revision history for Perl extension Gruntmaster::Daemon.
 
-5999.000_002 2014-02-28T19:23
+5999.000_003 2014-04-23T11:51+03:00
+ - Use new Postgres database
+ - Improve documentation
+ - Fix interactive problems (use waitpid instead of wait, trap SIGPIPE)
+
+5999.000_002 2014-02-28T19:23+02:00
  - Move most problem attributes outside meta
  - Pass test number as argument to verifier
  - Use new varnish-based purge
 
-5999.000_001 2014-02-03T12:41
+5999.000_001 2014-02-03T12:41+02:00
  - Change version to something that CPAN::Distnameinfo likes
  - Add Gruntmaster::Data to PREREQ_PM
  - Add more POD
@@ -13,5 +18,5 @@ Revision history for Perl extension Gruntmaster::Daemon.
  - Add COPYING and fix license in META.yml
  - Fix a POD error
 
-5999-TRIAL 2014-01-31T23:58
+5999-TRIAL 2014-01-31T23:58+02:00
  - Initial release

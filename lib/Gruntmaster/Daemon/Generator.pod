@@ -1,0 +1,42 @@
+=encoding utf-8
+
+=head1 NAME
+
+Gruntmaster::Daemon::Generator - Modules for generating input files
+
+=head1 SYNOPSIS
+
+  use Gruntmaster::Daemon::Generator::Foo;
+  Gruntmaster::Daemon::Generator::Foo::generate(5, $meta);
+
+=head1 DESCRIPTION
+
+A generator is a module that creates input data. Each generator has a subroutine, B<generate>(I<$test>, I<$meta>), which generates the input data for the given test.
+
+There are three generators in this distribution:
+
+=over
+
+=item L<Gruntmaster::Daemon::Generator::File> - Generate tests from files
+
+=item L<Gruntmaster::Daemon::Generator::Run> - Generate tests from program output
+
+=item L<Gruntmaster::Daemon::Generator::Undef> - Pretend to generate tests
+
+=back
+
+=head1 AUTHOR
+
+Marius Gavrilescu E<lt>marius@ieval.roE<gt>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2014 by Marius Gavrilescu
+
+This library is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+
+=cut

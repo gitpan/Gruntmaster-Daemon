@@ -1,0 +1,40 @@
+=encoding utf-8
+
+=head1 NAME
+
+Gruntmaster::Daemon::Judge - Modules for judging jobs
+
+=head1 SYNOPSIS
+
+  use Gruntmaster::Daemon::Runner::Foo;
+  my $verdict = Gruntmaster::Daemon::Runner::Foo::judge(@results);
+
+=head1 DESCRIPTION
+
+A judge is a module that takes a list of verdicts and returns a single, combined verdict.
+
+There are two judges in this distribution:
+
+=over
+
+=item L<Gruntmaster::Daemon::Judge::Absolute> - All-or-nothing ACM-style judge
+
+=item L<Gruntmaster::Daemon::Judge::Points> - 0 to 100 points IOI-style judge
+
+=back
+
+=head1 AUTHOR
+
+Marius Gavrilescu E<lt>marius@ieval.roE<gt>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2014 by Marius Gavrilescu
+
+This library is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+
+=cut

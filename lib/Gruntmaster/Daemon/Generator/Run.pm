@@ -6,15 +6,15 @@ use warnings;
 
 use Log::Log4perl qw/get_logger/;
 
-our $VERSION = '5999.000_002';
+our $VERSION = '5999.000_003';
 
 ##################################################
 
 sub generate{
-  my ($test, $meta) = @_;
-  my $gen = $meta->{files}{gen};
-  get_logger->trace("Generating test $test...");
-  $gen->{run}->($gen->{name}, args => [ $test ], fds => [qw/1 >input/]);
+	my ($test, $meta) = @_;
+	my $gen = $meta->{files}{gen};
+	get_logger->trace("Generating test $test...");
+	$gen->{run}->($gen->{name}, args => [ $test ], fds => [qw/1 >input/]);
 }
 
 1;
@@ -33,7 +33,7 @@ Gruntmaster::Daemon::Generator::Run - Generate tests from program output
 
 =head1 DESCRIPTION
 
-Gruntmaster::Daemon::Generator::Run is a dynamic test generator. Test C<$i> is the output of running C<< $meta->{files}{gen} >> with argument C<$i>.
+Gruntmaster::Daemon::Generator::Run is a dynamic test generator. The input for test C<$i> is the output of running C<< $meta->{files}{gen} >> with argument C<$i>.
 
 =head1 AUTHOR
 

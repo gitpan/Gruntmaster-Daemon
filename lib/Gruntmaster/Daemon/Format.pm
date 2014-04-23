@@ -15,7 +15,7 @@ use List::MoreUtils qw/natatime/;
 use Log::Log4perl qw/get_logger/;
 use IPC::Signal qw/sig_name sig_num/;
 
-our $VERSION = "5999.000_002";
+our $VERSION = "5999.000_003";
 our @EXPORT_OK = qw/prepare_files/;
 
 ##################################################
@@ -36,21 +36,23 @@ sub command_and_args{
 sub mkrun{
 	my $format = shift;
 	sub{
+		local *__ANON__ = 'mkrun_runner';
 		my ($name, %args) = @_;
+		get_logger->trace("Running $name...");
 		my $basename = fileparse $name, qr/\.[^.]*/;
 		my $ret = fork // die 'Cannot fork';
 		if ($ret) {
 			my $tle;
 			local $SIG{ALRM} = sub { kill KILL => $ret; $tle = 1};
 			alarm $args{timeout} if exists $args{timeout};
-			wait;
+			waitpid $ret, 0;
 			alarm 0;
 			my $sig = $? & 127;
 			my $signame = sig_name $sig;
 			die [TLE, "Time Limit Exceeded"] if $tle;
 			die [OLE, 'Output Limit Exceeded'] if $sig && $signame eq 'XFSZ';
-			die [DIED, "Crash (SIG$signame)"] if $sig;
-			die [NZX, "Non-zero exit status: " . ($? >> 8)] if $?;
+			die [DIED, "Crash (SIG$signame)"] if $sig && $signame ne 'PIPE';
+			die [NZX, "Non-zero exit status: " . ($? >> 8)] if $? >> 8;
 		} else {
 			my @fds = exists $args{fds} ? @{$args{fds}} : ();
 			$^F = 50;

@@ -5,22 +5,22 @@ use strict;
 use warnings;
 use parent qw/Exporter/;
 
-our $VERSION = "5999.000_002";
+our $VERSION = "5999.000_003";
 
 use constant +{
-  # Accepted
-  AC => 0,
+	# Accepted
+	AC => 0,
 
-  # Internal server error
-  ERR => -1,
+	# Internal server error
+	ERR => -1,
 
-  # All other errors
-  WA => 1,
-  NZX => 2,
-  TLE => 3,
-  OLE => 4,
-  DIED => 5,
-  REJ => 10,
+	# All other errors
+	WA => 1,
+	NZX => 2,
+	TLE => 3,
+	OLE => 4,
+	DIED => 5,
+	REJ => 10,
 };
 
 our @EXPORT_OK = qw/AC ERR WA NZX TLE OLE DIED REJ/;

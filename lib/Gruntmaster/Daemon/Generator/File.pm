@@ -8,19 +8,18 @@ use File::Copy qw/copy/;
 use File::Slurp qw/write_file/;
 use Log::Log4perl qw/get_logger/;
 
-our $VERSION = "5999.000_002";
+our $VERSION = "5999.000_003";
 
 ##################################################
 
 sub generate{
-  my ($test, $meta) = @_;
-  get_logger->trace("Generating test $test ...");
-  if (exists $meta->{infile}) {
-	  write_file 'input', $meta->{infile}[$test - 1]
-  } else {
-	  my $ct = defined $Gruntmaster::Data::contest ? "ct/$Gruntmaster::Data::contest" : '';
-	  copy "/var/lib/gruntmasterd/$ct/pb/$meta->{problem}/$test.in", 'input'
-  }
+	my ($test, $meta) = @_;
+	get_logger->trace("Generating test $test ...");
+	if (exists $meta->{infile}) {
+		write_file 'input', $meta->{infile}[$test - 1]
+	} else {
+		copy "/var/lib/gruntmasterd/pb/$meta->{problem}/$test.in", 'input'
+	}
 }
 
 1;
@@ -35,11 +34,13 @@ Gruntmaster::Daemon::Generator::File - Generate tests from files
 =head1 SYNOPSIS
 
   use Gruntmaster::Daemon::Generator::File;
-  Gruntmaster::Daemon::Generator::File->generate(5, $meta);
+  Gruntmaster::Daemon::Generator::File::generate(5, $meta);
 
 =head1 DESCRIPTION
 
-Gruntmaster::Daemon::Generator::File is a static test generator. Test C<$i> is C<< $meta->{infile}[$i - 1] >>.
+Gruntmaster::Daemon::Generator::File is a static test generator.
+If C<< $meta->{infile} >> exists, the input for test C<$i> is C<< $meta->{infile}[$i - 1] >>.
+Otherwise, the input for test C<$i> is F<< /var/lib/gruntmasterd/pb/$meta->{problem}/$test.in >>.
 
 =head1 AUTHOR
 
