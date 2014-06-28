@@ -4,7 +4,7 @@
       "Marius Gavrilescu <marius@ieval.ro>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.140640",
+   "generated_by" : "ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.141520",
    "license" : [
       "agpl_3"
    ],
@@ -68,5 +68,5 @@
          "url" : "https://git.ieval.ro/?p=gruntmaster-daemon.git"
       }
    },
-   "version" : "5999.000_003"
+   "version" : "5999.000_004"
 }

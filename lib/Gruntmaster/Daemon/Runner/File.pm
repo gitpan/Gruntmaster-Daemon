@@ -8,7 +8,7 @@ use Gruntmaster::Daemon::Constants qw/WA/;
 use File::Slurp qw/slurp/;
 use Log::Log4perl qw/get_logger/;
 
-our $VERSION = "5999.000_003";
+our $VERSION = "5999.000_004";
 
 ##################################################
 

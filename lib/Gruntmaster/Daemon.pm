@@ -4,7 +4,7 @@ use 5.014000;
 use strict;
 use warnings;
 
-our $VERSION = '5999.000_003';
+our $VERSION = '5999.000_004';
 
 use Gruntmaster::Daemon::Constants qw/ERR/;
 use Gruntmaster::Daemon::Format qw/prepare_files/;
@@ -23,6 +23,9 @@ use constant PAGE_SIZE => 10;
 use constant FORMAT_EXTENSION => {
 	C => 'c',
 	CPP => 'cpp',
+	GCCGO => 'go',
+	GOLANG => 'go',
+	HASKELL => 'hs',
 	MONO => 'cs',
 	JAVA => 'java',
 	PASCAL => 'pas',
@@ -140,7 +143,7 @@ sub process{
 	$jobr->update({
 		result => $meta->{result},
 		result_text => $meta->{result_text},
-		results => encode_json $meta->{results},
+		($meta->{results} ? (results => encode_json $meta->{results}) : ()),
 		$errors ? (errors => $errors) : ()
 	});
 

@@ -10,7 +10,7 @@ use Log::Log4perl qw/get_logger/;
 use POSIX qw/mkfifo/;
 use Try::Tiny;
 
-our $VERSION = '5999.000_003';
+our $VERSION = '5999.000_004';
 
 ##################################################
 

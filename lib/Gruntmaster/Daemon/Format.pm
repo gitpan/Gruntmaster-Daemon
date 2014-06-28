@@ -15,7 +15,7 @@ use List::MoreUtils qw/natatime/;
 use Log::Log4perl qw/get_logger/;
 use IPC::Signal qw/sig_name sig_num/;
 
-our $VERSION = "5999.000_003";
+our $VERSION = "5999.000_004";
 our @EXPORT_OK = qw/prepare_files/;
 
 ##################################################
@@ -24,7 +24,7 @@ sub command_and_args{
 	my ($format, $basename) = @_;
 
 	given($format) {
-		"./$basename" when [qw/C CPP PASCAL/];
+		"./$basename" when [qw/C CPP GCCGO GOLANG HASKELL PASCAL/];
 		"./$basename.exe" when 'MONO';
 		java => $basename when 'JAVA';
 		perl => $basename when 'PERL';

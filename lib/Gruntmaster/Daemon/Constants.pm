@@ -5,7 +5,7 @@ use strict;
 use warnings;
 use parent qw/Exporter/;
 
-our $VERSION = "5999.000_003";
+our $VERSION = "5999.000_004";
 
 use constant +{
 	# Accepted

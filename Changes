@@ -1,5 +1,9 @@
 Revision history for Perl extension Gruntmaster::Daemon.
 
+5999.000_004 2014-06-29T00:36+03:00
+ - Prevent crashing on compile errors
+ - Add new languages: Go (gc), Go (gccgo), Haskell (ghc)
+
 5999.000_003 2014-04-23T11:51+03:00
  - Use new Postgres database
  - Improve documentation

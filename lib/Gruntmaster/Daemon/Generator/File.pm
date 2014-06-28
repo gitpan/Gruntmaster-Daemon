@@ -8,7 +8,7 @@ use File::Copy qw/copy/;
 use File::Slurp qw/write_file/;
 use Log::Log4perl qw/get_logger/;
 
-our $VERSION = "5999.000_003";
+our $VERSION = "5999.000_004";
 
 ##################################################
 

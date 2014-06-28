@@ -21,6 +21,9 @@ if ($ret) {
 		exec 'gmcs', '-d:ONLINE_JUDGE', $name when  'MONO';
 		exec 'javac', $name when 'JAVA';
 		exec 'fpc', qw/-dONLINE_JUDGE -O2/, $name when 'PASCAL';
+		exec 'go', qw/build -compiler gc/, $name when 'GOLANG';
+		exec 'go', qw/build -compiler gccgo/, $name, when 'GCCGO';
+		exec 'ghc', qw/-DONLINE_JUDGE -Wall -O2 -o/, $basename, $name when 'HASKELL';
 		copy $name, $basename when ['PERL', 'PYTHON']
 	}
 }
@@ -52,7 +55,7 @@ Compile commands for each format:
 
 =item CPP
 
-  g++ -DONLINE_JUDGE -std=gnu11 -fabi-version=6 -Wall -Wextra -O2 -o $output $input
+  g++ -DONLINE_JUDGE -std=gnu++11 -fabi-version=6 -Wall -Wextra -O2 -o $output $input
 
 =item MONO
 
@@ -65,6 +68,18 @@ Compile commands for each format:
 =item PASCAL
 
   fpc -dONLINE_JUDGE -O2 $input
+
+=item GOLANG
+
+  go build -compiler gc $input
+
+=item GCCGO
+
+  go build -compiler gccgo $input
+
+=item HASKELL
+
+  ghc -DONLINE_JUDGE -Wall -O2 -o $output $input
 
 =item PERL
 
